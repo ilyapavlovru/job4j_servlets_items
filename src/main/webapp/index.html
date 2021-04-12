@@ -27,7 +27,7 @@
 
         const sexMale = $("#sexMale").prop('checked');
         const sexFemale = $("#sexFemale").prop('checked');
-        if (sexMale === false && sexFemale === false) {
+        if (sexMale === false || sexFemale === false) {
             alert("Укажите ваш пол");
             return false;
         }
@@ -95,7 +95,6 @@
                 <textarea class="form-control" id="description" rows="4"></textarea>
             </div>
         </div>
-        <button type="submit" class="btn btn-default" onclick="return validate();">Готово</button>
     </form>
 </div>
 
