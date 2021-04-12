@@ -15,12 +15,14 @@
         $.ajax({
             type: 'GET',
             url: 'http://localhost:8080/items/greet',
-            data: 'name=' + $('#exampleInputEmail1').val(),
-            dataType: 'text'
-        }).done(function(data) {
-            const el = document.getElementById('myHeader');
-            el.textContent = data;
-        }).fail(function(err){
+            data: {name: $('#exampleInputEmail1').val()},
+            dataType: 'json'
+        }).done(function (data) {
+            $.each(data, function (key, val) {
+                const el = document.getElementById('myHeader');
+                el.textContent = val;
+            });
+        }).fail(function (err) {
             alert(err);
         });
     }

@@ -1,5 +1,7 @@
 package ru.job4j.servlets.servlet;
 
+import org.json.simple.JSONObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +13,13 @@ public class GreetingServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/plain");
-        resp.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
-        PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        writer.println("Nice to meet you, " + name);
-        writer.flush();
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json");
+        JSONObject obj = new JSONObject();
+        obj.put("name", name);
+        PrintWriter out = resp.getWriter();
+        out.print(obj);
+        out.flush();
     }
 }
